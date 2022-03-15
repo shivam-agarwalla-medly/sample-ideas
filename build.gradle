@@ -59,4 +59,12 @@ micronaut {
     }
 }
 
-
+task runApi(type: JavaExec) {
+    main = "medly.Application"
+    classpath = sourceSets.main.runtimeClasspath
+    jvmArgs('-noverify',
+            '-XX:TieredStopAtLevel=1',
+            '-Dcom.sun.management.jmxremote',
+            "-Dlogback.configurationFile=logback-dev.xml",
+            '-Dmicronaut.environments=dev')
+}

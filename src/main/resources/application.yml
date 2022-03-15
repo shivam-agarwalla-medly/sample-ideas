@@ -1,4 +1,6 @@
 micronaut:
+  server:
+    port: 9000
   application:
     name: sampleIdeas
 netty:

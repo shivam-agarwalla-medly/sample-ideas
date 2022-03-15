@@ -24,11 +24,10 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
+    implementation('com.amazonaws:aws-xray-recorder-sdk-core:2.11.0')
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
-
 }
-
 
 application {
     mainClass.set("medly.ApplicationKt")
@@ -49,7 +48,7 @@ tasks {
         }
     }
 }
-graalvmNative.toolchainDetection = false
+
 micronaut {
     runtime("netty")
     testRuntime("kotest")
@@ -65,6 +64,6 @@ task runApi(type: JavaExec) {
     jvmArgs('-noverify',
             '-XX:TieredStopAtLevel=1',
             '-Dcom.sun.management.jmxremote',
-            "-Dlogback.configurationFile=logback-dev.xml",
+            "-Dlogback.configurationFile=logback.xml",
             '-Dmicronaut.environments=dev')
 }

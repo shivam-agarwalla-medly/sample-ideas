@@ -16,5 +16,11 @@ class SampleControllerTest(@Client("/api/sample") private val httpClient: HttpCl
             response.status shouldBe HttpStatus.OK
             response.body() shouldBe "Sample Data"
         }
+
+        "should call API" {
+            val response = httpClient.toBlocking().exchange("/call", String::class.java)
+            response.status shouldBe HttpStatus.OK
+            response.body() shouldBe "Data: Sample Data"
+        }
     }
 }

@@ -11,7 +11,7 @@ import jakarta.inject.Singleton
 @InterceptorBean(XRayTracingEnabled::class)
 class XRayTracingEnabledInterceptor: MethodInterceptor<Any, Any> {
     override fun intercept(context: MethodInvocationContext<Any, Any>): Any? {
-        val subsegment = AWSXRay.beginSubsegment("sample-ideas")
+        val subsegment = AWSXRay.beginSegment("sample-ideas")
         try {
             println("XRayTracing Start")
             return context.proceed().also { println("XRayTracing End") }
@@ -20,7 +20,7 @@ class XRayTracingEnabledInterceptor: MethodInterceptor<Any, Any> {
             println("XRayTracing Failed")
             throw exception
         } finally {
-            AWSXRay.endSubsegment()
+            AWSXRay.endSegment()
         }
     }
 }

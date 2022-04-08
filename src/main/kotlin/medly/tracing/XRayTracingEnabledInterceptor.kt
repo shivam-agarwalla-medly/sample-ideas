@@ -6,7 +6,6 @@ import io.micronaut.aop.MethodInterceptor
 import io.micronaut.aop.MethodInvocationContext
 import jakarta.inject.Singleton
 
-
 @Singleton
 @InterceptorBean(XRayTracingEnabled::class)
 class XRayTracingEnabledInterceptor: MethodInterceptor<Any, Any> {

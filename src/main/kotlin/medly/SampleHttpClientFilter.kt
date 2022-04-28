@@ -17,9 +17,11 @@ class SampleHttpClientFilter : HttpClientFilter {
             val httpObject = mapOf<String, Any>(
                 "request" to mapOf<String, Any?>(
                     "method" to request?.methodName,
-                    "url" to request?.uri.toString()
+                    "url" to request?.uri.toString(),
+                    "headers" to request?.headers?.map { it.key to it.value }
                 )
             )
+            println(httpObject)
             subsegment.putAllHttp(httpObject)
             return chain?.proceed(request)
         } catch (exception: Exception) {

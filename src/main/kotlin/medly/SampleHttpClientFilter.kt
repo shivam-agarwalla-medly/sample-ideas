@@ -15,7 +15,7 @@ class SampleHttpClientFilter : HttpClientFilter {
         try {
             println("XRayTracing Start For ${request?.uri}")
             val httpObject = mapOf<String, Any>(
-                "request" to mapOf<String, Any?>(
+                "request" to mapOf(
                     "method" to request?.methodName,
                     "url" to request?.uri.toString(),
                     "headers" to request?.headers?.map { it.key to it.value }
